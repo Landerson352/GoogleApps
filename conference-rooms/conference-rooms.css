@@ -1,0 +1,80 @@
+li {
+	position:relative;
+	padding-bottom:16px;
+}
+.bar {
+	position:absolute;
+	bottom:2px;
+	height:10px;
+}
+
+body {
+	background: #111;
+	color: #bbb;
+}
+.calendar-grid-container {
+	padding: 0 150px;
+	margin-top: 30px;
+}
+.calendar-grid {
+	position:relative;
+	font-size: 16px;
+	line-height: 1.5em;
+	padding-bottom: 30px;
+}
+.calendar {
+	position:relative;
+	height:1.5em;
+}
+.calendar-title {
+	position: absolute;
+	top: 0;
+	left: -150px;
+	width: 150px;
+	text-align: right;
+	padding: 0 10px;
+}
+.event {
+	position: absolute;
+	top: 0.25em;
+	height: 1em;
+}
+.hour-marker {
+	position: absolute;
+	top: -30px;
+	left: 0;
+	background: #444;
+	width: 1px;
+	height: 100%;
+	font-size: 12px;
+	color: #888;
+	font-weight: bold;
+	text-indent: 0.25em;
+	line-height: 30px;
+}
+.hour-marker:nth-child(2n - 1) {
+	background: #222;
+}
+.hour-marker.mod-0 { left: 0%; }
+.hour-marker.mod-1 { left: 4.5%; }
+.hour-marker.mod-2 { left: 9%; }
+.hour-marker.mod-3 { left: 13.5%; }
+.hour-marker.mod-4 { left: 18%; }
+.hour-marker.mod-5 { left: 22.5%; }
+.hour-marker.mod-6 { left: 27%; }
+.hour-marker.mod-7 { left: 31.5%; }
+.hour-marker.mod-8 { left: 36%; }
+.hour-marker.mod-9 { left: 40.5%; }
+.hour-marker.mod-10 { left: 45%; }
+.hour-marker.mod-11 { left: 49.5%; }
+.hour-marker.mod-12 { left: 54%; }
+.hour-marker.mod-13 { left: 58.5%; }
+.hour-marker.mod-14 { left: 63%; }
+.hour-marker.mod-15 { left: 67.5%; }
+.hour-marker.mod-16 { left: 72%; }
+.hour-marker.mod-17 { left: 76.5%; }
+.hour-marker.mod-18 { left: 81%; }
+.hour-marker.mod-19 { left: 85.5%; }
+.hour-marker.mod-20 { left: 90%; }
+.hour-marker.mod-21 { left: 94.5%; }
+.hour-marker.mod-22 { left: 99%; }
