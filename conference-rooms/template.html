@@ -1,31 +1,36 @@
+<div>
+	<div class="current-room">{{friendlyName current}}</div>
+	<div class="next-event js-nextevent"></div>
+</div>
 <div class="calendar-grid-container">
 	<div class="calendar-grid">
-		<div class="hour-marker mod-0"></div>
-		<div class="hour-marker mod-1">9</div>
-		<div class="hour-marker mod-2"></div>
-		<div class="hour-marker mod-3">10</div>
-		<div class="hour-marker mod-4"></div>
-		<div class="hour-marker mod-5">11</div>
-		<div class="hour-marker mod-6"></div>
-		<div class="hour-marker mod-7">12</div>
-		<div class="hour-marker mod-8"></div>
-		<div class="hour-marker mod-9">1</div>
-		<div class="hour-marker mod-10"></div>
-		<div class="hour-marker mod-11">2</div>
-		<div class="hour-marker mod-12"></div>
-		<div class="hour-marker mod-13">3</div>
-		<div class="hour-marker mod-14"></div>
-		<div class="hour-marker mod-15">4</div>
-		<div class="hour-marker mod-16"></div>
-		<div class="hour-marker mod-17">5</div>
-		<div class="hour-marker mod-18"></div>
-		<div class="hour-marker mod-19">6</div>
-		<div class="hour-marker mod-20"></div>
-		<div class="hour-marker mod-21">7</div>
-		<div class="hour-marker mod-22"></div>
+		<div class="hour-marker mod-800">8</div>
+		<div class="hour-marker mod-850"></div>
+		<div class="hour-marker mod-900">9</div>
+		<div class="hour-marker mod-950"></div>
+		<div class="hour-marker mod-1000">10</div>
+		<div class="hour-marker mod-1050"></div>
+		<div class="hour-marker mod-1100">11</div>
+		<div class="hour-marker mod-1150"></div>
+		<div class="hour-marker mod-1200">12</div>
+		<div class="hour-marker mod-1250"></div>
+		<div class="hour-marker mod-1300">1</div>
+		<div class="hour-marker mod-1350"></div>
+		<div class="hour-marker mod-1400">2</div>
+		<div class="hour-marker mod-1450"></div>
+		<div class="hour-marker mod-1500">3</div>
+		<div class="hour-marker mod-1550"></div>
+		<div class="hour-marker mod-1600">4</div>
+		<div class="hour-marker mod-1650"></div>
+		<div class="hour-marker mod-1700">5</div>
+		<div class="hour-marker mod-1750"></div>
+		<div class="hour-marker mod-1800">6</div>
 		{{#calendars}}
 			<div class="calendar">
-				<div class="calendar-title" style="color:{{color}}">{{friendlyName name}}</div>
+				<div class="calendar-title" style="color:{{color}}">
+					{{friendlyName name}}
+					{{{iconFor name}}}
+				</div>
 				{{#events}}
 					<div class="event" style="{{barStyle ../this this}}"></div>
 				{{/events}}

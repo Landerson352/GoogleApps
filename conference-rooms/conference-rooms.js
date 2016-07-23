@@ -1,5 +1,6 @@
-var startHour = 8.5;
-var endHour = 17.5;
+var data;
+var startHour = 8;
+var endHour = 18;
 var rooms = ['ChromeConf', 'FirefoxConf', 'SafariConf','ExplorerConf','GNVSeamonkeyConf','GNVSilkConf'];
 
 Handlebars.registerHelper('barStyle', function(calendar, event) {
@@ -7,7 +8,6 @@ Handlebars.registerHelper('barStyle', function(calendar, event) {
 	var endDate = new Date(event.endTime);
 	var left = (startDate.getHours() + startDate.getMinutes()/60 - startHour) * (endHour - startHour);
 	var width = (endDate.getHours() + endDate.getMinutes()/60 - startHour) * (endHour - startHour) - left;
-	console.log(left);
 	return new Handlebars.SafeString(
 		'background-color:' + calendar.color + ';' +
 		'left:' + left + '%;' + 
@@ -15,8 +15,49 @@ Handlebars.registerHelper('barStyle', function(calendar, event) {
 	);
 });
 
+function getTimeRemaining(endtime){
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor( (t/1000) % 60 );
+  var minutes = Math.floor( (t/1000/60) % 60 );
+  var hours = Math.floor( (t/(1000*60*60)) % 24 );
+  var days = Math.floor( t/(1000*60*60*24) );
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function pad(num, size){ return ('000000000' + num).substr(-size); }
+
+function showNextEvent() {
+	if(data && data.current) {
+		var currentCalendar = _.find(data.calendars, { name: data.current });
+		if(currentCalendar) {
+			var nextEvent = _.find(currentCalendar.events, function(event){
+				return new Date().getTime() < new Date(event.startTime).getTime();
+			});
+			if(nextEvent) {
+				var ct = getTimeRemaining(nextEvent.startTime);
+				//var ct = moment(nextEvent.startTime, 'LT').fromNow();
+				var cts = [
+					pad(ct.hours, 2), 
+					pad(ct.minutes, 2), 
+					pad(ct.seconds, 2)
+				].join(':');
+				$('.js-nextevent').html('Next event: <b>' + nextEvent.title + '</b> starts in ' + cts);
+			}
+		}
+	}
+	setTimeout(showNextEvent, 200);
+}
+showNextEvent();
+
 function display(_data, _templateHtml) {
-	var data = {
+	data = {
+		current: window.location.href.split('?')[1],
 		calendars: _.map(rooms, function(room){
 			return _.find(_data.calendars, { name: room });
 		})
@@ -27,7 +68,7 @@ function display(_data, _templateHtml) {
 
 Promise.all([
 	$.get('https://script.google.com/macros/s/AKfycbyQIq-rdnnQidIkagf2CZGyNiFpnDN3Sqfxq5ndt7twuEN6ptc/exec'),
-	$.get('template.html')
+	$.get('template.html?'+Math.floor(Math.random()*100000))
 ]).done(function(values) {
 	display(values[0], values[1]);
 });
