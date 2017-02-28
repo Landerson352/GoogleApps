@@ -15,23 +15,6 @@ Handlebars.registerHelper('barStyle', function(calendar, event) {
 	);
 });
 
-function getTimeRemaining(endtime){
-  var t = Date.parse(endtime) - Date.parse(new Date());
-  var seconds = Math.floor( (t/1000) % 60 );
-  var minutes = Math.floor( (t/1000/60) % 60 );
-  var hours = Math.floor( (t/(1000*60*60)) % 24 );
-  var days = Math.floor( t/(1000*60*60*24) );
-  return {
-    'total': t,
-    'days': days,
-    'hours': hours,
-    'minutes': minutes,
-    'seconds': seconds
-  };
-}
-
-function pad(num, size){ return ('000000000' + num).substr(-size); }
-
 function showNextEvent() {
 	if(data && data.current) {
 		var currentCalendar = _.find(data.calendars, { name: data.current });
